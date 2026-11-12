@@ -1,6 +1,7 @@
+# IntelliDesk dependencies
 pymupdf
 numpy
-streamlit
 pandas
 plotly
+streamlit
 requests

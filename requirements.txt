@@ -1,7 +1,7 @@
-# IntelliDesk dependencies
-pymupdf
-numpy
-pandas
-plotly
-streamlit
-requests
+# IntelliDesk dependencies (versions tested on Python 3.13)
+numpy==2.5.4
+pandas==3.1.1
+plotly==7.1.0
+pymupdf==2.1
+requests==2.34.2
+streamlit==1.67.0

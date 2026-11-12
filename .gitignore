@@ -1,0 +1,30 @@
+# ---- Virtual environments (each person creates their own) ----
+venv/
+.venv/
+env/
+
+# ---- Python cache and compiled files ----
+__pycache__/
+*.py[cod]
+
+# ---- Environment variables and secrets (none needed now, protects us later) ----
+.env
+
+# ---- Generated data (rebuilt by the program, never committed) ----
+data/index/
+data/*.db
+data/*.db-*
+
+# ---- Logs and temporary files ----
+*.log
+*.tmp
+
+# ---- Editor and tool files ----
+.vscode/
+.idea/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- Operating system files ----
+Thumbs.db
+Desktop.ini

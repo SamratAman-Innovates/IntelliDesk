@@ -1,0 +1,17 @@
+SAMPLE DEMONSTRATION DOCUMENT - NOT AN OFFICIAL UNIVERSITY PROCEDURE
+Title: Wi-Fi Troubleshooting Guide (Sample)
+
+Problem: Wi-Fi is connected but there is no internet access
+
+1. Turn Wi-Fi off on your device, wait ten seconds, and turn it on again.
+2. Forget the campus network in your Wi-Fi settings, then reconnect and enter your credentials again.
+3. Check that the date and time on your device are correct. Wrong time settings can block secure connections.
+4. Restart your device and try again.
+5. If other devices also have no internet, the problem may be with the network itself. Report it to the IT helpdesk.
+
+Problem: The campus network does not appear in the list of available networks
+
+1. Make sure Wi-Fi is turned on and Airplane mode is off.
+2. Move closer to an access point, since walls and distance weaken the signal.
+3. Restart your device to refresh the network list.
+4. If the network still does not appear, create a support ticket with your location and device type.

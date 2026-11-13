@@ -1,17 +1,21 @@
+
 """
 rag_pipeline.py - The full question -> answer flow (the "brain" of IntelliDesk).
 
 answer_question(question, history) returns ONE result dictionary:
     status              "answered", "out_of_scope", "not_found" or "error"
     answer              text to show the user
-    sources             [{"source", "page", "label", "score"}, ...] (only when answered)
-    best_score          the best retrieval score found (useful for tuning)
+    sources             [{"source", "page", "label", "score"}, ...]
+    best_score          the best retrieval score found
     uses_sample_content True if any source is sample demonstration material
     offer_ticket        True whenever the chatbot could not answer reliably
     error               technical detail when status is "error", else None
 
-Flow: retrieve -> scope check -> prompt -> local LLM -> not-found check -> result
+Flow: retrieve -> scope check -> evidence check -> prompt ->
+      local LLM -> not-found check -> result
 """
+
+import re
 
 from src import config
 from src.llm_client import LLMError, generate_answer
@@ -54,9 +58,38 @@ def _collect_sources(chunks):
 
 
 def _is_not_found(answer):
-    """True if the model replied with the not-found marker (in any spacing or case)."""
+    """True if the model replied with the not-found marker."""
     normalized = answer.upper().replace("_", " ")
     return NOT_FOUND_MARKER.replace("_", " ") in normalized
+
+
+
+def _has_evidence(question, chunks):
+    """Check meaningful overlap with the best-matching chunk only."""
+    stop_words = {
+        "how", "what", "when", "where", "why", "who", "which",
+        "can", "could", "would", "should", "do", "does", "did",
+        "is", "are", "am", "the", "a", "an", "to", "for", "of",
+        "in", "on", "at", "my", "me", "i", "we", "our", "it",
+        "this", "that", "and", "or", "with", "from", "please",
+        "tell", "show", "help",
+    }
+
+    question_terms = {
+        word for word in re.findall(r"[a-z0-9]+", question.lower())
+        if len(word) > 2 and word not in stop_words
+    }
+
+    if not question_terms or not chunks:
+        return False
+
+    # Examine only the highest-ranked chunk.
+    best_chunk_text = chunks[0]["text"].lower()
+    document_terms = set(re.findall(r"[a-z0-9]+", best_chunk_text))
+
+    matching_terms = question_terms.intersection(document_terms)
+
+    return len(matching_terms) >= 2
 
 
 def _result(status, answer, sources=None, best_score=0.0, error=None):
@@ -84,24 +117,40 @@ def answer_question(question, history=None):
     best_score = results[0]["score"] if results else 0.0
     relevant = relevant_results(results)
 
-    # Safety net 1: nothing in the documents matches -> do not call the LLM.
+    # Safety net 1: nothing in the documents matches.
     if not relevant:
         return _result(
-            config.STATUS_OUT_OF_SCOPE, OUT_OF_SCOPE_MESSAGE, best_score=best_score
+            config.STATUS_OUT_OF_SCOPE,
+            OUT_OF_SCOPE_MESSAGE,
+            best_score=best_score,
+        )
+
+    # Safety net 2: retrieved text must contain meaningful evidence.
+    if not _has_evidence(question, relevant):
+        return _result(
+            config.STATUS_NOT_FOUND,
+            NOT_FOUND_MESSAGE,
+            best_score=best_score,
         )
 
     messages = build_messages(question, relevant, history)
+
     try:
         answer = generate_answer(messages)
     except LLMError as error:
         return _result(
-            config.STATUS_ERROR, ERROR_MESSAGE, best_score=best_score, error=str(error)
+            config.STATUS_ERROR,
+            ERROR_MESSAGE,
+            best_score=best_score,
+            error=str(error),
         )
 
-    # Safety net 2: the model says the context does not contain the answer.
+    # Safety net 3: the model says the context does not contain the answer.
     if _is_not_found(answer):
         return _result(
-            config.STATUS_NOT_FOUND, NOT_FOUND_MESSAGE, best_score=best_score
+            config.STATUS_NOT_FOUND,
+            NOT_FOUND_MESSAGE,
+            best_score=best_score,
         )
 
     return _result(
@@ -130,19 +179,31 @@ if __name__ == "__main__":
         verdict = "OK   " if result["status"] == expected else "CHECK"
         sources = [(s["source"], s["page"], s["label"]) for s in result["sources"]]
         print(f"[{verdict}] {question}")
-        print(f"        status={result['status']} (expected {expected})  best_score={result['best_score']}")
+        print(
+            f"        status={result['status']} (expected {expected}) "
+            f"best_score={result['best_score']}"
+        )
         print(f"        sources={sources}")
-        print(f"        offer_ticket={result['offer_ticket']}  uses_sample_content={result['uses_sample_content']}")
+        print(
+            f"        offer_ticket={result['offer_ticket']} "
+            f"uses_sample_content={result['uses_sample_content']}"
+        )
         print(f"        answer: {result['answer'][:250]!r}\n")
 
     # The LLM being unreachable must give status "error", not a crash.
     real_url = config.OLLAMA_BASE_URL
     config.OLLAMA_BASE_URL = "http://localhost:9"
     try:
-        result = answer_question("My Wi-Fi is connected but there is no internet")
-        print(f"LLM down -> status={result['status']}, offer_ticket={result['offer_ticket']}")
+        result = answer_question(
+            "My Wi-Fi is connected but there is no internet"
+        )
+        print(
+            f"LLM down -> status={result['status']}, "
+            f"offer_ticket={result['offer_ticket']}"
+        )
         assert result["status"] == config.STATUS_ERROR
         assert result["offer_ticket"] is True
     finally:
         config.OLLAMA_BASE_URL = real_url
+
     print("\nError handling check passed.")

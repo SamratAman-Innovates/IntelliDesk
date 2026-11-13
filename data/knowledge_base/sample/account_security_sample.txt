@@ -1,0 +1,22 @@
+SAMPLE DEMONSTRATION DOCUMENT - NOT AN OFFICIAL UNIVERSITY PROCEDURE
+Title: Account Security Guidance (Sample)
+
+Problem: I think someone else has accessed my account
+
+1. Change your password immediately from a device you trust.
+2. Sign out of all other sessions if the system offers that option.
+3. Check your recent sign-in activity for places or devices you do not recognize.
+4. Create a support ticket right away and describe what you noticed.
+
+Problem: I received a suspicious email asking for my password
+
+1. Do not click links or open attachments in the email.
+2. Never share your password, even with someone who claims to be from IT.
+3. Delete the email or report it as phishing, and tell the IT helpdesk by creating a support ticket.
+
+Problem: How to keep my account safe
+
+1. Use a long, unique password that you do not use anywhere else.
+2. Turn on two-step verification if your university account supports it.
+3. Do not save your password on shared or lab computers.
+4. Sign out when you finish using a shared computer.

@@ -1,0 +1,17 @@
+SAMPLE DEMONSTRATION DOCUMENT - NOT AN OFFICIAL UNIVERSITY PROCEDURE
+Title: Student Portal Login Help (Sample)
+
+Problem: The student portal says my username or password is incorrect
+
+1. Check that Caps Lock is off and that you typed your student ID exactly as issued.
+2. Use the Forgot Password link on the portal login page to reset your password.
+3. After a reset, wait a few minutes before signing in again.
+4. Clear your browser cache or try a private browsing window.
+5. If the portal still rejects your login, create a support ticket with your student ID and the error message.
+
+Problem: The student portal page does not load or shows an error
+
+1. Check that your internet connection works by opening another website.
+2. Try a different browser or update your current browser.
+3. Disable browser extensions that block scripts, then reload the page.
+4. If the page still fails, note the error message and create a support ticket.

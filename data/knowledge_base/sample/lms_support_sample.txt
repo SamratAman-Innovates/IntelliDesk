@@ -1,0 +1,23 @@
+SAMPLE DEMONSTRATION DOCUMENT - NOT AN OFFICIAL UNIVERSITY PROCEDURE
+Title: LMS Support (Sample)
+
+Problem: I cannot log in to the LMS
+
+1. Use the same university account that your department told you to use for the LMS.
+2. Check Caps Lock and reset your password if you are unsure of it.
+3. Try a private browsing window or a different browser.
+4. If you still cannot log in, create a support ticket with your name and the error message.
+
+Problem: I cannot see my course in the LMS
+
+1. Check that you are signed in with your own account.
+2. Course access is added by your instructor or department, so confirm that you are enrolled.
+3. Wait a few hours after enrollment changes, then refresh the page.
+4. If the course is still missing, create a support ticket with the course name and code.
+
+Problem: I cannot upload an assignment
+
+1. Check the file type and the maximum file size allowed in the assignment instructions.
+2. Make sure the deadline has not passed.
+3. Try another browser and a stable internet connection.
+4. If the upload still fails, take a screenshot of the error and create a support ticket.

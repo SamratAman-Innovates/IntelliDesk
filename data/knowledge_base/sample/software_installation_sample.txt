@@ -1,0 +1,17 @@
+SAMPLE DEMONSTRATION DOCUMENT - NOT AN OFFICIAL UNIVERSITY PROCEDURE
+Title: Software Installation Help (Sample)
+
+Problem: I need to install required course software on my laptop
+
+1. Check the course instructions to confirm the exact software name and version you need.
+2. Download the installer only from the official software website or from the source your instructor provides.
+3. Make sure your laptop has enough free disk space and that your operating system is supported.
+4. Run the installer as administrator and follow the on-screen steps.
+5. Restart your laptop after installation and open the software to confirm it starts.
+
+Problem: The installation fails or shows a license error
+
+1. Write down the exact error message.
+2. Make sure you are signed in with your university account if the software needs one.
+3. Check that you are connected to the campus network if the license is campus based.
+4. If the error continues, create a support ticket with the software name, version and error message.

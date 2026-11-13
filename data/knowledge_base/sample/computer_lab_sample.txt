@@ -1,0 +1,21 @@
+SAMPLE DEMONSTRATION DOCUMENT - NOT AN OFFICIAL UNIVERSITY PROCEDURE
+Title: Computer Lab Support (Sample)
+
+Problem: The lab computer will not start or is frozen
+
+1. Check that the monitor and the computer are both switched on and the cables are firmly connected.
+2. If the screen is frozen, wait one minute, then hold the power button to restart the computer.
+3. Do not unplug hardware or open the computer case.
+4. Report the computer number and the problem to the lab assistant, or create a support ticket if no assistant is available.
+
+Problem: I cannot sign in to a lab computer or the lab software is missing
+
+1. Sign in with your own university account and check that Caps Lock is off.
+2. Try another computer in the lab to see whether the problem affects only one machine.
+3. Do not install software on lab computers yourself.
+4. Report the computer number and the missing software to the lab assistant or create a support ticket.
+
+Problem: How to book a lab slot or ask for technical help
+
+1. Lab booking rules differ between departments, so follow the booking instructions announced by your department.
+2. For technical problems during a booked slot, tell the lab assistant first and create a support ticket if the problem is not fixed.

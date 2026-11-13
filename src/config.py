@@ -67,6 +67,7 @@ SIMILARITY_THRESHOLD = 0.15    # initial guess; we will tune it with real tests
 STATUS_ANSWERED = "answered"
 STATUS_OUT_OF_SCOPE = "out_of_scope"
 STATUS_NOT_FOUND = "not_found"
+STATUS_ERROR = "error"          # the local LLM was unavailable
 
 # ---------------------------------------------------------------------------
 # 7. Local LLM (Ollama)
